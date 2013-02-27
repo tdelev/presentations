@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="/presentations/reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="/presentations/reveal.js/css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="/presentations/reveal.js/css/theme/finki.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="/presentations/reveal.js/lib/css/zenburn.css">
@@ -33,30 +33,59 @@
 	<body>
 
 		<div class="reveal">
-			
+
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1>Вовед во C++</h1>
+					<h2>Напреден развој на софтвер</h2>
+					
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
-
+					<h2>Вовед</h2>
+					<ul>
+						<li>C++ вклучува многу карактеристики на C јазикот дополнети со
+    					дополнителни механизми за објектно-ориентирано програмирање (ООП)</li>
+    					<li>Јазикот C++ е развиен во лабораториите на Bell и во почетокот бил наречен „С со класи“</li>
+    					<li>Името С++ вклучува во себе операција за зголемување на јазикот С (++) и укажува на тоа дека С++ е верзија на С со проширени можности</li>
+    					<li>C++ компајлерот може да се користи и за преведување на C програми</li>
+					</ul>
+					
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						Бла бла за Ц++
 					</aside>
 				</section>
-
+				<section>
+					<section>
+						<h2>Влез/Излез текови во C++ <pre>&lt;iostream&gt;</pre></h2>
+						<p>Во С++ за работа со влезно/излезните текови наместо функциите `printf` и `scanf` ги користиме наредбите `cout &lt;&lt; и `cin &gt;&gt;`.</p>
+					</section>
+					<section>
+						<h3>Пример</h3>
+						<pre><code>
+	printf("Vnesi nova vrednost: ");
+	scanf("%d", &vred);
+	printf("Novata vrednost e: %d\n", vred);
+						</code></pre>
+						во С++ се запишува како:
+						<pre><code>
+	cout << "Vnesi nova vrednost: ";
+	cin >> vred;
+	cout << "Novata vrednost e: " << vred << '\n';
+						</code></pre>
+					</section>
+					<section>
+						При тоа препрорачливо е изолираните <code>\n</code> да се заменат со
+						<code>endl</code>:
+						<pre><code>cout << "Novata vrednost e: " << vred << endl;</code></pre>
+					</section>
+				</section>
+				<section>
+					<h3>За работа со влезно/излезните текови во C++ треба да се вклучи датотеката со заглавjа<h3>
+						<h1><code>&lt;iostream&gt;</code></h1>
+				</section>
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
