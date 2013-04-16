@@ -13,13 +13,13 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #cdcdcd;
-  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #cdcdcd 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #cdcdcd));
-  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #cdcdcd 100%);
-  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #cdcdcd 100%);
-  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #cdcdcd 100%);
-  background: radial-gradient(center, circle cover, #f7fbfc 0%, #cdcdcd 100%);
+  background: #ededed;
+  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #ededed));
+  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
+  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
+  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
+  background: radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
   background-color: #f7fbfc;
 }
 
@@ -170,11 +170,6 @@ body {
 
 .reveal code {
   font-family: "Source Code Pro";
-}
-
-.span2 {
-  width: 50%;
-  float: left;
 }
 
 .decoration {
