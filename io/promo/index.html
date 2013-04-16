@@ -4,10 +4,28 @@
     <meta charset="utf-8">
     <title>Presentation title</title>
 
-    <link type="text/css" rel="stylesheet" href="style.css"/>
-    <link type="text/css" rel="stylesheet" href="../reveal.js/css/reveal.min.css"/>
-    <link type="text/css" rel="stylesheet" href="../reveal.js/css/theme/default.css"/>
-    <link type="text/css" rel="stylesheet" href="../reveal.js/lib/css/zenburn.css"/>
+		<meta name="description" content="Вовед во C++">
+		<meta name="author" content="М-р Томче Делев">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="/presentations/reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="/presentations/reveal.js/css/theme/finki.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="/presentations/reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="/presentations/reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="/presentations/reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
 </head>
 <body>
 <div class="reveal">
@@ -52,22 +70,35 @@
   </div>
 </div>
 
-<script type="text/javascript" src="../reveal.js/lib/js/head.min.js"></script>
-<script type="text/javascript" src="../reveal.js/js/reveal.min.js"></script>
-<script type="text/javascript">
-   Reveal.initialize({
-      dependencies: [
-         // Syntax highlight for <code> elements
-         { src: '../reveal.js/plugin/highlight/highlight.js',
-            async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-         // Zoom in and out with Alt+click
-         { src: '../reveal.js/plugin/zoom-js/zoom.js',
-            async: true, condition: function() { return !!document.body.classList; } },
-         // Speaker notes
-         { src: '../reveal.js/plugin/notes/notes.js',
-            async: true, condition: function() { return !!document.body.classList; } }
-      ]
-   });
-</script>
+	<script src="/presentations/reveal.js/lib/js/head.min.js"></script>
+		<script src="/presentations/reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '/presentations/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '/presentations/reveal.js/plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/presentations/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/presentations/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '/presentations/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '/presentations/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: '/presentations/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+	</script>
+
 </body>
 </html>
