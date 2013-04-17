@@ -21,6 +21,9 @@ body {
   background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
   background: radial-gradient(center, circle cover, #f7fbfc 0%, #ededed 100%);
   background-color: #f7fbfc;
+  background-repeat:no-repeat;
+  background-position: 50% 40%;
+  background-image:url(images/watermark.png);
 }
 
 .reveal {
