@@ -20,7 +20,8 @@
 
 5. Checkout `reveal.js/master` branch in your own branch `reveal_branch`
 
-   > `git checkout -b reveal_branch reveal.js/master` 
+   > `git checkout -b reveal_branch reveal.js/master`
+   > 'git push origin reveal_branch' optionally push the branch to github 
 
 6. Return back to your branch
 
@@ -34,5 +35,23 @@
 
    > `git commit -am "Added revealj subdirectory"
    > `git push`
+
+## Updating your subfolder **revealjs**
+
+1. Switch to `reveal_branch` and pull changes
+
+   > `git checkout reveal_branch`
+   > `git pull`
+
+2. Switch back to `gh-pages` branch and merge changes
+
+   > `git checkout gh-pages`
+   > `git merge --squash -s subtree --no-commit reveal_branch`
+
+   To view the diff in you subtree
+   > `git diff-tree -p rack_branch`
+
+
+
 
 [http://git-scm.com/book/en/Git-Tools-Subtree-Merging](http://git-scm.com/book/en/Git-Tools-Subtree-Merging "Subtree merging")
