@@ -14,9 +14,21 @@
 
    > `git fetch reveal.js`
 
-5. Subtree merging
+5. Create branch `reveal_branch` that will track `reveal.js/master` branch
 
    > `git checkout -b reveal_branch reveal.js/master` 
 
+6. Return back to your branch
+
+   > `git checkout master`
+
+7. Add subfolder **revealjs** from `reveal_branch/master` in your current repository
+
+   > `git read-tree --prefix=revealjs/ -u reveal_branch`
+
+8. Commit and push the changes
+
+   > `git commit -am "Added revealj subdirectory"
+   > `git push`
 
 [http://git-scm.com/book/en/Git-Tools-Subtree-Merging](http://git-scm.com/book/en/Git-Tools-Subtree-Merging "Subtree merging")
