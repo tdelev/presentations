@@ -33,7 +33,7 @@
 
 8. Commit and push the changes
 
-   > `git commit -am "Added revealj subdirectory"
+   > `git commit -am "Added revealj subdirectory"`
    > `git push`
 
 ## Updating your subfolder **revealjs**
