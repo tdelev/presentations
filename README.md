@@ -4,19 +4,19 @@
 
 2. Clone your repository 
 
-`git clone https://github.com/tdelev/presentations.git presentations`
+   > `git clone https://github.com/tdelev/presentations.git presentations`
 
 3. Add reveal.js dependency in your repository 
 
-`git remote add reveal.js https://github.com/tdelev/reveal.js.git`
+   > `git remote add reveal.js https://github.com/hakimel/reveal.js.git`
 
 4. Fetch the contents
 
-`git fetch reveal.js`
+   > `git fetch reveal.js`
 
 5. Subtree merging
 
-`git checkout -b reveal_branch reveal.js/master` 
+   > `git checkout -b reveal_branch reveal.js/master` 
 
 
 [http://git-scm.com/book/en/Git-Tools-Subtree-Merging](http://git-scm.com/book/en/Git-Tools-Subtree-Merging "Subtree merging")
