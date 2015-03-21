@@ -49,7 +49,7 @@
    > `git merge --squash -s subtree --no-commit reveal_branch`
 
    To view the diff in you subtree
-   > `git diff-tree -p rack_branch`
+   > `git diff-tree -p reveal_branch`
 
 
 
