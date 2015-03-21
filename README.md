@@ -6,6 +6,10 @@
 
    > `git clone https://github.com/tdelev/presentations.git presentations`
 
+3. Create `gh-pages` branch
+
+   > `git checkout --orphan gh-pages`
+
 3. Add reveal.js dependency in your repository 
 
    > `git remote add reveal.js https://github.com/hakimel/reveal.js.git`
@@ -14,13 +18,13 @@
 
    > `git fetch reveal.js`
 
-5. Create branch `reveal_branch` that will track `reveal.js/master` branch
+5. Checkout `reveal.js/master` branch in your own branch `reveal_branch`
 
    > `git checkout -b reveal_branch reveal.js/master` 
 
 6. Return back to your branch
 
-   > `git checkout master`
+   > `git checkout gh-pages`
 
 7. Add subfolder **revealjs** from `reveal_branch/master` in your current repository
 
