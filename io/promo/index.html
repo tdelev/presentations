@@ -13,7 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="/presentations/reveal.js/css/reveal.min.css">
+    <link rel="stylesheet" href="/presentations/revealjs/css/reveal.css">
 
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="finki.css" id="theme">
@@ -21,15 +21,15 @@
     <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
 
     <!-- For syntax highlighting -->
-    <link rel="stylesheet" href="/presentations/reveal.js/lib/css/zenburn.css">
+    <link rel="stylesheet" href="/presentations/revealjs/lib/css/zenburn.css">
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
-    document.write('<link rel="stylesheet" href="/presentations/reveal.js/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
+    document.write('<link rel="stylesheet" href="/presentations/revealjs/css/print/' + (window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper') + '.css" type="text/css" media="print">');
     </script>
 
     <!--[if lt IE 9]>
-    <script src="/presentations/reveal.js/lib/js/html5shiv.js"></script>
+    <script src="/presentations/revealjs/lib/js/html5shiv.js"></script>
     <![endif]-->
 </head>
 
@@ -904,12 +904,12 @@
             </div>
             </div>
 
-            <script src="/presentations/reveal.js/lib/js/head.min.js"></script>
-            <script src="/presentations/reveal.js/js/reveal.min.js"></script>
+            <script src="/presentations/revealjs/lib/js/head.min.js"></script>
+            <script src="/presentations/revealjs/js/reveal.js"></script>
 
             <script>
             // Full list of configuration options available here:
-            // https://github.com/hakimel/reveal.js#configuration
+            // https://github.com/hakimel/revealjs#configuration
             Reveal.initialize({
                 controls: true,
                 progress: true,
@@ -919,42 +919,42 @@
                 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
                 transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-                // Optional libraries used to extend on reveal.js
+                // Optional libraries used to extend on revealjs
                 dependencies: [{
-                        src: '/presentations/reveal.js/lib/js/classList.js',
+                        src: '/presentations/revealjs/lib/js/classList.js',
                         condition: function() {
                             return !document.body.classList;
                         }
                     }, {
-                        src: '/presentations/reveal.js/plugin/markdown/showdown.js',
+                        src: '/presentations/revealjs/plugin/markdown/showdown.js',
                         condition: function() {
                             return !!document.querySelector('[data-markdown]');
                         }
                     }, {
-                        src: '/presentations/reveal.js/plugin/markdown/markdown.js',
+                        src: '/presentations/revealjs/plugin/markdown/markdown.js',
                         condition: function() {
                             return !!document.querySelector('[data-markdown]');
                         }
                     }, {
-                        src: '/presentations/reveal.js/plugin/highlight/highlight.js',
+                        src: '/presentations/revealjs/plugin/highlight/highlight.js',
                         async: true,
                         callback: function() {
                             hljs.initHighlightingOnLoad();
                         }
                     }, {
-                        src: '/presentations/reveal.js/plugin/zoom-js/zoom.js',
+                        src: '/presentations/revealjs/plugin/zoom-js/zoom.js',
                         async: true,
                         condition: function() {
                             return !!document.body.classList;
                         }
                     }, {
-                        src: '/presentations/reveal.js/plugin/notes/notes.js',
+                        src: '/presentations/revealjs/plugin/notes/notes.js',
                         async: true,
                         condition: function() {
                             return !!document.body.classList;
                         }
                     }
-                    // { src: '/presentations/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                    // { src: '/presentations/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
                 ]
             });
             </script>

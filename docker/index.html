@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Dockerizing Spring Web Application | Tomche Delev</title>
+  <meta name="description" content="Dockerizing Spring Web Application">
+  <meta name="author" content="Tomche Delev">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="/presentations/revealjs/css/reveal.css">
+  <link rel="stylesheet" href="/presentations/revealjs/css/theme/black.css" id="theme">
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="/presentations/revealjs/lib/css/zenburn.css">
+  <!-- Printing and PDF exports -->
+  <script>
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = window.location.search.match(/print-pdf/gi) ? '/presentations/revealjs/css/print/pdf.css' : '/presentations/revealjs/css/print/paper.css';
+  document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+  <!--[if lt IE 9]>
+		<script src="/presentations/revealjs/lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Dockerizing Spring Web Application</h1>
+        <h3>Using Docker to deploy Spring Boot web application using PostgresSQL</h3>
+        <p>
+          <small>By <a href="http://tdelev.github.io">Tomche Delev</a> / <a href="http://twitter.com/tdelev">@tdelev</a></small>
+        </p>
+      </section>
+
+      <section>
+        <section>
+          <h2>Agenda</h2>
+          <ul>
+            <li>What the heck is Docker?</li>
+            <li>How the containers changed the world?</li>
+            <li>Docker intro</li>
+            <li>Ship the containers in five steps</li>
+          </ul>
+        </section>
+        <section>
+          <p>My goal hacking with Docker</p>
+          <h2>To deploy my Spring Boot application along with the PostgresSQL database server</h2>
+        </section>
+      </section>
+      <!-- Example of nested vertical slides -->
+      <section>
+        <section>
+          <h2>What is Docker?</h2>
+          <p>According the <a href="https://www.docker.com/whatisdocker/">official docs</a> Docker is a platform that can be used to</p>
+          <ul>
+            <li>build</li>
+            <li>ship</li>
+            <li>and run applications</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Container</h2>
+          <img src="/presentations/docker/images/docker-logo.png" />
+        </section>
+        <section>
+          <h3>How were the goods transpored?</h3>
+          <h2>How are the goods transpored NOW?</h2>
+        </section>
+        <section>
+          <h2>The container has become the standardized API of cargo.</h2>
+        </section>
+        <section>
+          <h3>Just as the phisical ship containers are used to tranport goods, the 
+virtual container can be used to ship and deploy any service.</h3>
+        </section>
+        <section>
+          <h2>VM image</h2>
+          <p>Downsides of VM aproach are:</p>
+          <ul>
+            <li>no guaranty of virtualized envirnoment</li>
+            <li>heavyweight technology</li>
+            <li>slow and IO intensive building and starting process</li>
+            <li>deployment costs on IaaS such as AWS EC2</li>
+          </ul>
+        </section>
+
+      </section>
+
+      <section>
+        <section>
+          <h2>Docker introduction</h2>
+        </section>
+
+        <section>
+          <p>Docker is becomingly</p>
+          <h2>increasingly popular</h2>
+        </section>
+
+        <section>
+          <p>
+            Allows you to package a microservice in a
+          </p>
+          <h3>standardized portable format</h3>
+          <p>
+            that’s independent of the technology used to implement the service
+          </p>
+        </section>
+        <section>
+          <p>Provides a</p>
+          <h3>
+      			high degree of isolation
+      		</h3>
+          <p>between different services</p>
+        </section>
+
+        <section>
+          <p>Docker containers are </p>
+          <h3>extremely lightweight</h3>
+          <p> and as a result can be built and</p>
+          <h3>started extremely quickly</h3>
+        </section>
+
+        <section>
+          <p>It runs natively on</p>
+          <h3>Linux</h3>
+          <p>You can also run Docker on Windows and Mac OSX using</p>
+          <h3>Boot2Docker</h3>
+          <p>Some clouds also have added extra support for Docker</p>
+        </section>
+
+        <section>
+          <p>The two main Docker concepts are</p>
+          <h3 class="fragment">image</h3>
+          <p class="fragment">which is a portable application packaging format</p>
+          <h3 class="fragment">container</h3>
+          <p class="fragment">which is a running image and consists of one or more sandboxed processes</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Docker images</h2>
+          <p>A Docker image is read-only file system image of an operating system and an application.</p>
+        </section>
+
+        <section>
+          <p>An image is</p>
+          <h3>self-contained</h3>
+          <p>and will run on any Docker installation</p>
+        </section>
+
+        <section>
+          <p>You can create an image from scratch</p>
+          <p>but normally an image is created by starting a container from</p>
+          <h3>existing base image</h3>
+          <p>installing applications by executing the same kinds of commands you would use when configuring a regular machine</p>
+          <h3>apt-get install –y</h3>
+          <p>and then saving the container as a new image</p>
+        </section>
+
+        <section>
+          <p>For example, to create an image containing a Spring Boot based application, you could start from a</p>
+          <h3>vanilla Ubuntu image</h3>
+          <h3>install the JDK</h3>
+          <p>and then</p>
+          <h3>install the executable JAR</h3>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Docker containers</h2>
+          <p>A Docker container is a running image consisting of one or more sandboxed processes</p>
+        </section>
+
+        <section>
+          <h2>What we get with containers?</h2>
+        </section>
+
+        <section>
+          <h2>Isolation</h2>
+          <ul>
+            <li>process groups</li>
+            <li>namespaces</li>
+            <li>own root file-system</li>
+          </ul>
+          <p>Docker container often only consists of the application’s processes</p>
+        </section>
+
+        <section>
+          <h2>Resource limits</h2>
+          <ul>
+            <li>memory</li>
+            <li>CPU</li>
+          </ul>
+          <h2>Networking isolation</h2>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h2>Spring Boot and Docker</h2>
+          <p>Let’s now build a Docker image that runs the Spring Boot application</p>
+        </section>
+
+        <section>
+          <h2>Step 1</h2>
+          <h3>Create the image Dockerfile</h3>
+          <pre>
+          <code data-trim contenteditable>
+FROM java:7
+COPY . /apps/spring_app
+WORKDIR /apps/spring_app
+EXPOSE 8080
+CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
+		</code>
+			</pre>
+        </section>
+
+        <section>
+          <h2>Step 2</h2>
+          <h3>Build the image</h3>
+          <pre>
+          <code data-trim contenteditable>
+			docker build -t tdelev/spring_app 
+			</code>
+			</pre>
+        </section>
+
+        <section>
+          <h2>Step 3</h2>
+          <h3>Pull database image</h3>
+          <pre>
+          <code data-trim contenteditable>
+			docker pull postgres
+			</code>
+			</pre>
+        </section>
+
+        <section>
+          <h2>Step 4</h2>
+          <h3>Create data volume</h3>
+          <pre>
+          <code data-trim contenteditable>
+		docker create -v /var/lib/postgresql/data \
+		--name spring_app_data postgres:9.4
+			</code>
+			</pre>
+        </section>
+
+        <section>
+          <h2>Step 5</h2>
+          <h3>Start database instance </h3>
+          <pre>
+          <code data-trim contenteditable>
+		docker run --volumes-from spring_app_data \
+		--name spring_app_db \
+		-e POSTGRES_PASSWORD=thepassword \
+		-d -P postgres:9.4
+			</code>
+			</pre>
+        </section>
+        <section>
+          <h2>Step 6</h2>
+          <h3>Run app</h3>
+          <pre>
+          <code data-trim contenteditable>
+		docker run --name spring_app_container 
+		--link spring_app_db:spring_app_db 
+		-p 8080:8080 
+		-d tdelev/spring_app
+			</code>
+			</pre>
+          <p>Connect to database instance</p>
+          <pre>
+          <code data-trim contenteditable>
+		psql -h localhost -p 49155 -U postgres --password
+		</code>
+		</pre>
+          </pre>
+        </section>
+      </section>
+
+      <section style="text-align: left;">
+      	<h2>Thank You</h2>
+        <h1>THE END</h1>
+        <p>
+         <a href="http://tdelev.github.io/presentations/docker/">tdelev.github.io/presentations/docker/</a>
+        </p>
+      </section>
+    </div>
+  </div>
+  <script src="/presentations/revealjs/lib/js/head.min.js"></script>
+  <script src="/presentations/revealjs/js/reveal.js"></script>
+  <script>
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    transition: 'slide', // none/fade/slide/convex/concave/zoom
+    // Optional reveal.js plugins
+    dependencies: [{
+      src: '/presentations/revealjs/lib/js/classList.js',
+      condition: function() {
+        return !document.body.classList;
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/markdown/marked.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/markdown/markdown.js',
+      condition: function() {
+        return !!document.querySelector('[data-markdown]');
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/highlight/highlight.js',
+      async: true,
+      condition: function() {
+        return !!document.querySelector('pre code');
+      },
+      callback: function() {
+        hljs.initHighlightingOnLoad();
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/zoom-js/zoom.js',
+      async: true
+    }, {
+      src: '/presentations/revealjs/plugin/notes/notes.js',
+      async: true
+    }]
+  });
+  </script>
+</body>
+
+</html>
