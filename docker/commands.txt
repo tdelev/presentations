@@ -1,0 +1,9 @@
+docker build -t tdelev/spring_app .
+
+docker create -v /var/lib/postgresql/data --name spring_app_db postgres:9.4
+
+docker run --volumes-from spring_app_db --name spring_app_pg -e POSTGRES_USER=demouser -e POSTGRES_PASSWORD=demopass -d -P postgres:9.4
+
+docker run -it --link spring_app_pg:postgres --rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U demouser'
+
+docker run --name demo_app --link spring_app_pg:spring_app_pg -p 8080:8080 -d tdelev/spring_app
