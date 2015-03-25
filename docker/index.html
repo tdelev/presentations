@@ -45,7 +45,7 @@
           <li>What the heck is Docker?</li>
           <li>How the containers changed the world?</li>
           <li>Docker intro</li>
-          <li>Ship the containers in five steps</li>
+          <li>Ship the containers in six steps</li>
         </ul>
       </section>
       <!-- Example of nested vertical slides -->
@@ -62,11 +62,18 @@
           <img src="/presentations/docker/images/docker-logo.png" />
         </section>
         <section>
-          <h4>How were the goods transpored?</h3>
+          <h3>How do you ship your application?</h3>
+          <h4 class="fragment">How were the goods transpored?</h4>
           <h2 class="fragment">How are the goods transpored NOW?</h2>
+          <aside class="notes">
+            The journey of services from development to production mirrors how cargo was shipped prior to the invention of intermodal shipping containers.
+          </aside>
         </section>
         <section>
           <h2>The container has become the standardized API of cargo.</h2>
+          <aside class="notes">
+            All non-bulk cargo is now packed into standard shipping containers, which can be carried by truck, trains and ships. Crane operators now rapidly load and unload containers regardless of their contents. The contents of the container are never touched in transit.
+          </aside>
         </section>
         <section>
           <h3>Just as the phisical ship containers are used to tranport goods, the 
@@ -173,7 +180,7 @@ virtual container can be used to ship and deploy any service</h3>
         </section>
 
         <section>
-          <h2>What we get with containers?</h2>
+          <h2>What we get from Docker containers?</h2>
         </section>
 
         <section>
@@ -200,18 +207,19 @@ virtual container can be used to ship and deploy any service</h3>
         <section>
           <h2>Spring Boot and Docker</h2>
           <p>Let’s now build a Docker image that runs the Spring Boot application</p>
+          <img src="images/hacking.gif" />
         </section>
 
         <section>
           <h2>Step 1</h2>
           <h3>Create the image Dockerfile</h3>
           <pre>
-          <code data-trim contenteditable>
-FROM java:7
-COPY . /apps/spring_app
+          <code>
+FROM java:8
+COPY demo-prod.jar /apps/spring_app
 WORKDIR /apps/spring_app
 EXPOSE 8080
-CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "demo-prod.jar"]
     </code>
       </pre>
         </section>
@@ -220,8 +228,8 @@ CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
           <h2>Step 2</h2>
           <h3>Build the image</h3>
           <pre>
-          <code data-trim contenteditable>
-      docker build -t tdelev/spring_app .
+          <code>
+$ docker build -t tdelev/spring_app .
       </code>
       </pre>
         </section>
@@ -229,9 +237,10 @@ CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
         <section>
           <h2>Step 3</h2>
           <h3>Pull database image</h3>
+          <p><a href="https://hub.docker.com/">hub.docker.com</a></p>
           <pre>
-          <code data-trim contenteditable>
-      docker pull postgres
+          <code>
+$ docker pull postgres
       </code>
       </pre>
         </section>
@@ -240,9 +249,9 @@ CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
           <h2>Step 4</h2>
           <h3>Create data volume</h3>
           <pre>
-          <code data-trim contenteditable>
-    docker create -v /var/lib/postgresql/data
-    --name spring_app_data postgres:9.4
+          <code>
+$ docker create -v /var/lib/postgresql/data \
+--name spring_app_data postgres:9.4
       </code>
       </pre>
         </section>
@@ -252,11 +261,21 @@ CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
           <h3>Start database instance </h3>
           <pre>
           <code data-trim contenteditable>
-    docker run --volumes-from spring_app_data
-    --name spring_app_db
-    -e POSTGRES_USER=demo -e POSTGRES_PASSWORD=demodemo 
-    -d -P postgres:9.4
+docker run --volumes-from spring_app_data \
+--name spring_app_db \
+-e POSTGRES_USER=demouser -e POSTGRES_PASSWORD=demopass \
+-d -P postgres:9.4 \
       </code>
+      </pre>
+          <p>To connect to the database execute</p>
+          <pre>
+        <code data-trim contenteditable>
+docker run -it --link spring_app_pg:postgres \
+--rm postgres sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" \
+-p "$POSTGRES_PORT_5432_TCP_PORT" -U demouser' \
+
+create database demo;
+        </code>
       </pre>
         </section>
         <section>
@@ -264,28 +283,35 @@ CMD ["java", "-jar", "spring_app-0.0.1-SNAPSHOT.jar"]
           <h3>Run app</h3>
           <pre>
           <code data-trim contenteditable>
-    docker run --name spring_app_container 
-    --link spring_app_db:spring_app_db 
-    -p 8080:8080 
-    -d tdelev/spring_app
+docker run --name spring_app_container \
+--link spring_app_db:spring_app_db \
+-p 8080:8080 \
+-d tdelev/spring_app
       </code>
       </pre>
           <p>Connect to database instance</p>
           <pre>
           <code data-trim contenteditable>
-    psql -h localhost -p 49155 -U postgres --password
+psql -h localhost -p 49157 -U demouser --password
     </code>
     </pre>
           </pre>
         </section>
       </section>
+      <section>
+        <section>
+          <h2>Your reaction?</h2>
+          <img src="images/your_reaction.gif">
+          <h1>???</h1>
+        </section>
 
-      <section style="text-align: left;">
-        <h2>Thank You</h2>
-        <h1>THE END</h1>
-        <p>
-          <a href="http://tdelev.github.io/presentations/docker/">tdelev.github.io/presentations/docker/</a>
-        </p>
+        <section style="text-align: left;">
+          <h2>Thank You</h2>
+          <h1>THE END</h1>
+          <p>
+            <a href="http://tdelev.github.io/presentations/docker/">tdelev.github.io/presentations/docker/</a>
+          </p>
+        </section>
       </section>
     </div>
   </div>
