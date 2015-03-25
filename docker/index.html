@@ -262,7 +262,7 @@ $ docker create -v /var/lib/postgresql/data \
           <pre>
           <code data-trim contenteditable>
 docker run --volumes-from spring_app_data \
---name spring_app_db \
+--name spring_app_pg \
 -e POSTGRES_USER=demouser -e POSTGRES_PASSWORD=demopass \
 -d -P postgres:9.4 \
       </code>
@@ -284,7 +284,7 @@ create database demo;
           <pre>
           <code data-trim contenteditable>
 docker run --name spring_app_container \
---link spring_app_db:spring_app_db \
+--link spring_app_pg:spring_app_pg \
 -p 8080:8080 \
 -d tdelev/spring_app
       </code>
