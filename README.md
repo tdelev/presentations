@@ -22,9 +22,11 @@ dependencies use absolute paths i.e. `/{repo_name}/revealjs/{revealjs_file}`
 `{github_username}.github.io/{repo_name}/{presentation_name}`
 
    > `git commit -am "Added revealjs submodule and published my presentation"`
+   
    > `git push`
 
 ## Updating your submodule **revealjs**
 
    > `cd revealjs`
+   
    > `git pull`
