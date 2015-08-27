@@ -1,4 +1,4 @@
-# Github hosted presentations
+# Github hosted presentations in 5 easy steps
 
 1. Create github repository
 
@@ -10,48 +10,21 @@
 
    > `git checkout --orphan gh-pages`
 
-3. Add reveal.js dependency in your repository 
+3. Add [reveal.js](https://github.com/hakimel/reveal.js) dependency as a submodule in a folder
+named `revealjs` in your repository 
 
-   > `git remote add reveal.js https://github.com/hakimel/reveal.js.git`
+   > `git submodule add https://github.com/hakimel/reveal.js.git revealjs`
+   
+4. Create you presentation in a new directory `presentation_name` and to include the reveal.js
+dependencies use absolute paths i.e. `/{repo_name}/revealjs/{revealjs_file}`
 
-4. Fetch the contents
+5. Commit and push the changes to publish your presentation at url 
+`{github_username}.github.io/{repo_name}/{presentation_name}`
 
-   > `git fetch reveal.js`
-
-5. Checkout `reveal.js/master` branch in your own branch `reveal_branch`
-
-   > `git checkout -b reveal_branch reveal.js/master`
-   > 'git push origin reveal_branch' optionally push the branch to github 
-
-6. Return back to your branch
-
-   > `git checkout gh-pages`
-
-7. Add subfolder **revealjs** from `reveal_branch/master` in your current repository
-
-   > `git read-tree --prefix=revealjs/ -u reveal_branch`
-
-8. Commit and push the changes
-
-   > `git commit -am "Added revealj subdirectory"`
+   > `git commit -am "Added revealjs submodule and published my presentation"`
    > `git push`
 
-## Updating your subfolder **revealjs**
+## Updating your submodule **revealjs**
 
-1. Switch to `reveal_branch` and pull changes
-
-   > `git checkout reveal_branch`
+   > `cd revealjs`
    > `git pull`
-
-2. Switch back to `gh-pages` branch and merge changes
-
-   > `git checkout gh-pages`
-   > `git merge --squash -s subtree --no-commit reveal_branch`
-
-   To view the diff in you subtree
-   > `git diff-tree -p reveal_branch`
-
-
-
-
-[http://git-scm.com/book/en/Git-Tools-Subtree-Merging](http://git-scm.com/book/en/Git-Tools-Subtree-Merging "Subtree merging")
