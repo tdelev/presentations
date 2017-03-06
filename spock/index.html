@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Test Easy and Prosper with Spock Framework | JavaSkop17</title>
+  <meta name="description"
+        content="The talk will be introduction to Spock Framwork for writing elegant and concise unit tests. Few real world unit tests will be live coded, showing you how to enjoy writing tests.">
+  <meta name="author" content="Tomche Delev">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="/presentations/revealjs/css/reveal.css">
+  <link rel="stylesheet" href="/presentations/revealjs/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="style.css">
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="/presentations/revealjs/lib/css/zenburn.css">
+  <link rel="shortcut icon" href="/presentations/docker/images/favicon.png"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? '/presentations/revealjs/css/print/pdf.css' : '/presentations/revealjs/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+  <!--[if lt IE 9]>
+  <script src="/presentations/revealjs/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+
+<body>
+<div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section data-background-image="bg/title2.jpg">
+      <h1>Test Easy and Prosper with Spock Framework</h1>
+      <h2>Tomche Delev</h2>
+      <h3>March 11, 2017, JavaSkop17</h3>
+    </section>
+
+    <section data-background-image="bg/horse.jpg">
+      <div class="left">
+        <h2>Agenda</h2>
+        <ul>
+          <li class="fragment"><h3>Why bother doing unit testing?</h3></li>
+          <li class="fragment"><h3>How to enjoy writing unit tests?</h3></li>
+          <li class="fragment"><h3>Just code it already.</h3></li>
+        </ul>
+      </div>
+    </section>
+
+    <!--Start of section why bother doing unit testing?-->
+    <section>
+      <section data-background-image="bg/unit-testing.jpg">
+        <h2 style="color:#000;">What is unit testing?</h2>
+      </section>
+
+      <section>
+        <h4>Definition</h4>
+        <h2>A unit test is a piece of a code (usually a method) that invokes another piece of code and checks the
+          correctness of some assumptions afterward.</h2>
+        <h3>If the assumptions turn out to be wrong, the unit test has failed.</h3>
+        <h3>A "unit" is a method or function.</h3>
+      </section>
+
+      <section>
+        <h2>Do you write unit tests?</h2>
+        <h1><a href="http://etc.ch/q46G">http://etc.ch/q46G</a></h1>
+        <img src="images/poll_qr.png"/>
+      </section>
+
+      <section>
+        <h2>But why?</h2>
+
+        <h3><a href="https://news.ycombinator.com/item?id=11799272">Why Most Unit Testing is Waste (2014)</a></h3>
+      </section>
+
+      <section data-background-image="bg/com.jpg">
+        <h2 style="color:#000;">What is the answer of the community?</h2>
+      </section>
+
+      <section>
+        <h1 style="color: #FF6600;">HN</h1>
+
+        <h2>Ok let's stop writing UT and see what happens.</h2>
+        <h2>Wait... we've already tried that, and we know the result pretty well</h2>
+      </section>
+
+      <section>
+        <h2>1. Dynamic languages</h2>
+
+        <aside class="notes">
+          Simple type mismatches, wrong variable names etc. are now caught in "top level system level test".
+          Yes these are bugs that should have been caught by a compiler had we had one.
+        </aside>
+      </section>
+
+      <section>
+        <h2>2. Documentation</h2>
+
+        <aside class="notes">
+          There's no documentation as to how something should work, or what functionality a module is trying to express.
+        </aside>
+      </section>
+
+      <section>
+        <h2>3. Refactoring</h2>
+
+        <aside class="notes">
+          No one dares to refactor anything ==>Code rottens ==> maintenance hell.
+        </aside>
+      </section>
+
+      <section>
+        <h2>4. Rely on human factor</h2>
+
+        <aside class="notes">
+          Bugs are caught by costly human beings (often used to execute "system level tests") instead of pieces of
+          code.
+        </aside>
+      </section>
+
+      <section>
+        <h2>5. On failure the system is equally broken</h2>
+
+        <aside class="notes">
+          When something does break in those "top level system tests", no one has a clue where to look, as all the
+          building blocks of our system are now considered equally broken.
+        </aside>
+      </section>
+
+      <section>
+        <h2>6. Fear of reusing</h2>
+
+        <aside class="notes">
+          It's scary to reuse existing modules, as no one knows if they work or not, outside the scope of the specific
+          system with which they were previously tested. Hence re-invention, code duplication, and yet another
+          maintenance hell.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Did I fail to mention something?</h2>
+      </section>
+
+      <section>
+        <h2>UT cannot assert the correctness of your code.</h2>
+        <h1>But it will constructively assert its incorrectness.</h1>
+      </section>
+
+      <section>
+        <img src="images/so.png"/>
+        <h1>SO</h1>
+        <h2>Is Unit Testing worth the effort?</h2>
+      </section>
+
+      <section>
+        <h2>1. Big changes more quickly</h2>
+
+        <aside class="notes">
+          Unit Tests allows you to make big changes to code quickly. You know it works now because you've run the
+          tests, when you make the changes you need to make, you need to get the tests working again. This saves
+          hours.
+        </aside>
+      </section>
+
+      <section>
+        <h2>2. When to stop coding</h2>
+
+        <aside class="notes">
+          TDD helps you to realise when to stop coding. Your tests give you confidence that you've done enough for now
+          and can stop tweaking and move on to the next thing.
+        </aside>
+      </section>
+
+      <section>
+        <h2>3. The tests and the code work together to achieve better code.</h2>
+
+        <aside class="notes">
+          Your code could be bad / buggy.
+          Your TEST could be bad / buggy.
+          In TDD you are banking on the chances of both being bad / buggy being low.
+          Often it's the test that needs fixing but that's still a good outcome.
+        </aside>
+      </section>
+
+      <section>
+        <h2>4. TDD helps with coding constipation.</h2>
+
+        <aside class="notes">
+          When faced with a large and daunting piece of work ahead writing the tests will get you moving quickly.
+        </aside>
+      </section>
+
+      <section>
+
+        <h2>5. Unit Tests help you really understand the design of the code you are working on.</h2>
+
+        <aside class="notes">
+          Instead of writing code to do something, you are starting by outlining all the conditions you are subjecting
+          the code to and what outputs you'd expect from that.
+        </aside>
+      </section>
+
+      <section>
+        <h2>6. Instant visual feedback.</h2>
+
+        <aside class="notes">
+          Unit Tests give you instant visual feedback, we all like the feeling of all those green lights when we've
+          done. It's very satisfying. It's also much easier to pick up where you left off after an interruption because
+          you can see where you got to - that next red light that needs fixing.
+        </aside>
+      </section>
+
+      <section>
+        <h2>7. Unit testing does not mean writing twice as much code.</h2>
+
+        <aside class="notes">
+          Contrary to popular belief unit testing does not mean writing twice as much code, or coding slower. It's
+          faster and more robust than coding without tests once you've got the hang of it. Test code itself is usually
+          relatively trivial and doesn't add a big overhead to what you're doing. This is one you'll only believe when
+          you're doing it :)
+        </aside>
+      </section>
+
+      <section>
+        <h2>8. Fowler: "Imperfect tests, run frequently, are much better than perfect tests that are never written at
+          all"</h2>
+
+        <aside class="notes">
+          I interpret this as giving me permission to write tests where I think they'll be most useful even if the
+          rest of my code coverage is woefully incomplete.
+        </aside>
+      </section>
+
+      <section>
+        <h2>9. Code documentation</h2>
+
+        <aside class="notes">
+          Good unit tests can help document and define what something is supposed to do.
+        </aside>
+      </section>
+
+      <section>
+        <h2>10. Unit tests help with code re-use.</h2>
+
+        <aside class="notes">
+          Migrate both your code and your tests to your new project. Tweak the code till the tests run again.
+        </aside>
+      </section>
+
+      <section>
+        <h1>Unit testing is a lot like going to the gym.</h1>
+
+        <aside class="notes">
+          You know it is good for you, all the arguments make sense, so you start working out.
+          There's an initial rush, which is great, but after a few days you start to wonder if it is worth the trouble.
+          You're taking an hour out of your day to change your clothes and run on a hamster wheel and you're not sure
+          you're really gaining anything other than sore legs and arms.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Then, after maybe one or two weeks, just as the soreness is going away, a Big Deadline begins
+          approaching.</h2>
+
+        <aside class="notes">
+          You need to spend every waking hour trying to get "useful" work done, so you cut out extraneous stuff, like
+          going to the gym.
+          You fall out of the habit, and by the time Big Deadline is over, you're back to square one.
+          If you manage to make it back to the gym at all, you feel just as sore as you were the first time you went.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Are you doing something wrong?</h2>
+
+        <aside class="notes">
+          You do some reading, to see if you're doing something wrong.
+          You begin feel a little bit of irrational spite toward all the fit, happy people extolling the virtues of
+          exercise.
+          You realize that you don't have a lot in common.
+          They don't have to drive 15 minutes out of the way to go to the gym; there is one in their building.
+          They don't have to argue with anybody about the benefits of exercise; it is just something everybody does and
+          accepts as important.
+          When a Big Deadline approaches, they aren't told that exercise is unnecessary any more than your boss would
+          ask you to stop eating.
+        </aside>
+      </section>
+
+      <section>
+        <h2>The final answer</h2>
+        <h1>Unit Testing is usually worth the effort</h1>
+        <h3>BUT the amount of effort required isn't going to be the same for everybody</h3>
+
+        <aside class="notes">
+          Unit Testing may require an enormous amount of effort if you are dealing with spaghetti code base in a company
+          that doesn't actually value code quality.
+          (A lot of managers will sing Unit Testing's praises, but that doesn't mean they will stick up for it when it
+          matters.)
+
+          If you are trying to introduce Unit Testing into your work and are not seeing all the sunshine and rainbows
+          that you have been led to expect, don't blame yourself.
+          You might need to find a new job to really make Unit Testing work for you.
+        </aside>
+      </section>
+    </section>
+    <!--End of section why bother doing unit testing?-->
+
+    <!--Start of section Spock Framework-->
+    <section>
+      <section data-background-image="bg/eat-happy.jpg">
+        <div style="margin-top:-500px;">
+          <h2>How to enjoy writing unit tests?</h2>
+          <h1 class="fragment">Spock Framework</h1>
+        </div>
+      </section>
+
+      <section>
+        <h2>Spock is:</h2>
+
+        <ul>
+          <li class="fragment">
+            <h3>Testing and specification framework for Java and Groovy applications</h3>
+          </li>
+          <li class="fragment">
+            <h3>With beautiful and highly expressive specification language </h3>
+          </li>
+          <li class="fragment">
+            <h3>Compatible with most IDEs, build tools, and continuous integration servers</h3>
+          </li>
+          <li class="fragment">
+            <h3>Inspired from JUnit, jMock, RSpec, Groovy, Scala, Vulcans, and other fascinating life
+              forms</h3>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Why Spock?</h2>
+        <ul>
+          <li class="fragment">
+            <h3>Reduce the lines of test code</h3>
+          </li>
+          <li class="fragment">
+            <h3>Make tests more readable</h3>
+          </li>
+          <li class="fragment">
+            <h3>Turn tests into specifications</h3>
+          </li>
+          <li class="fragment">
+            <h3>Make testing fun again!</h3>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Hello Spock</h2>
+
+        <pre>
+          <code data-trim data-noescape>
+import spock.lang.Specification
+
+class StarshipSpec extends Specification {
+
+    def "science officer of the starship Enterprise is Spock"() {
+        given:
+        def starship = new Starship("Enterprise", "Spock")
+
+        when:
+        def actual = starship.getScienceOfficer()
+
+        then:
+        actual == "Spock"
+    }
+}
+    </code>
+        </pre>
+      </section>
+
+      <section>
+        <h2>Blocks</h2>
+
+        <div class="left">
+          <h2>State based testing (AAA)</h2>
+          <ul>
+            <li>
+              <h3>Arrange</h3>
+            </li>
+            <li>
+              <h3>Act</h3>
+            </li>
+            <li>
+              <h3>Assert</h3>
+            </li>
+          </ul>
+        </div>
+
+        <div class="right">
+          <h2>BDD Style</h2>
+          <ul>
+            <li>
+              <h3>Given</h3>
+            </li>
+            <li>
+              <h3>When</h3>
+            </li>
+            <li>
+              <h3>Then</h3>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="images/Blocks2Phases.png"/>
+          <p>Other blocks: expect, where</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Comparison to JUnit</h2>
+      </section>
+
+      <section>
+        <h2>Data Driven Testing</h2>
+        <h3>Demo</h3>
+      </section>
+
+      <section>
+        <h2>Interaction Based Testing and Mocking</h2>
+        <h3>Demo</h3>
+      </section>
+
+    </section>
+
+    <section>
+      <h2>Real world example</h2>
+      <h1>Show me the code</h1>
+    </section>
+
+    <section data-background-image="bg/questions.jpg">
+
+    </section>
+
+    <section data-background-image="bg/thank-you.jpg">
+
+    </section>
+
+
+  </div>
+</div>
+
+<script src="/presentations/revealjs/lib/js/head.min.js"></script>
+<script src="/presentations/revealjs/js/reveal.js"></script>
+<script>
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    width: 1920,
+    height: 1280,
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    transition: 'zoom', // none/fade/slide/convex/concave/zoom
+    // Optional reveal.js plugins
+    dependencies: [{
+      src: '/presentations/revealjs/lib/js/classList.js',
+      condition: function () {
+        return !document.body.classList;
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/highlight/highlight.js',
+      async: true,
+      condition: function () {
+        return !!document.querySelector('pre code');
+      },
+      callback: function () {
+        hljs.initHighlightingOnLoad();
+      }
+    }, {
+      src: '/presentations/revealjs/plugin/zoom-js/zoom.js',
+      async: true
+    }, {
+      src: '/presentations/revealjs/plugin/notes/notes.js',
+      async: true
+    }]
+  });
+</script>
+</body>
+</html>
