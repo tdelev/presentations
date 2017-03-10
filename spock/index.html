@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Test Easy and Prosper with Spock Framework | JavaSkop17</title>
   <meta name="description"
-        content="The talk will be introduction to Spock Framwork for writing elegant and concise unit tests. Few real world unit tests will be live coded, showing you how to enjoy writing tests.">
+        content="The talk will be introduction to Spock Framework for writing elegant and concise unit tests. Few real world unit tests will be live coded, showing you how to enjoy writing tests.">
   <meta name="author" content="Tomche Delev">
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -35,19 +35,26 @@
 <div class="reveal">
   <!-- Any section element inside of this container is displayed as a slide -->
   <div class="slides">
+    <section>
+      <h2>Do you write unit tests?</h2>
+      <h1><a href="http://etc.ch/q46G">http://etc.ch/q46G</a></h1>
+      <img src="images/poll_qr.png"/>
+    </section>
+
     <section data-background-image="bg/title2.jpg">
       <h1>Test Easy and Prosper with Spock Framework</h1>
       <h2>Tomche Delev</h2>
-      <h3>March 11, 2017, JavaSkop17</h3>
+      <h3>March 11, 2017</h3>
+      <h2>JavaSkop17'</h2>
     </section>
 
     <section data-background-image="bg/horse.jpg">
       <div class="left">
         <h2>Agenda</h2>
         <ul>
-          <li class="fragment"><h3>Why bother doing unit testing?</h3></li>
+          <li class="fragment"><h3>Why bother with unit testing?</h3></li>
           <li class="fragment"><h3>How to enjoy writing unit tests?</h3></li>
-          <li class="fragment"><h3>Just code it already.</h3></li>
+          <li class="fragment"><h3>Show me the code already!</h3></li>
         </ul>
       </div>
     </section>
@@ -64,12 +71,6 @@
           correctness of some assumptions afterward.</h2>
         <h3>If the assumptions turn out to be wrong, the unit test has failed.</h3>
         <h3>A "unit" is a method or function.</h3>
-      </section>
-
-      <section>
-        <h2>Do you write unit tests?</h2>
-        <h1><a href="http://etc.ch/q46G">http://etc.ch/q46G</a></h1>
-        <img src="images/poll_qr.png"/>
       </section>
 
       <section>
@@ -90,7 +91,7 @@
       </section>
 
       <section>
-        <h2>1. Dynamic languages</h2>
+        <h2 style="text-decoration: line-through;">1. Dynamic languages</h2>
 
         <aside class="notes">
           Simple type mismatches, wrong variable names etc. are now caught in "top level system level test".
@@ -177,7 +178,7 @@
       </section>
 
       <section>
-        <h2>3. The tests and the code work together to achieve better code.</h2>
+        <h2>3. The tests and the code work together to achieve better code (TDD).</h2>
 
         <aside class="notes">
           Your code could be bad / buggy.
@@ -210,8 +211,10 @@
 
         <aside class="notes">
           Unit Tests give you instant visual feedback, we all like the feeling of all those green lights when we've
-          done. It's very satisfying. It's also much easier to pick up where you left off after an interruption because
-          you can see where you got to - that next red light that needs fixing.
+          done.
+          It's very satisfying.
+          It's also much easier to pick up where you left off after an interruption because you can see where you got to
+          - that next red light that needs fixing.
         </aside>
       </section>
 
@@ -219,10 +222,10 @@
         <h2>7. Unit testing does not mean writing twice as much code.</h2>
 
         <aside class="notes">
-          Contrary to popular belief unit testing does not mean writing twice as much code, or coding slower. It's
-          faster and more robust than coding without tests once you've got the hang of it. Test code itself is usually
-          relatively trivial and doesn't add a big overhead to what you're doing. This is one you'll only believe when
-          you're doing it :)
+          Contrary to popular belief unit testing does not mean writing twice as much code, or coding slower.
+          It's faster and more robust than coding without tests once you've got the hang of it.
+          Test code itself is usually relatively trivial and doesn't add a big overhead to what you're doing.
+          This is one you'll only believe when you're doing it :)
         </aside>
       </section>
 
@@ -236,21 +239,21 @@
         </aside>
       </section>
 
-      <section>
+      <!--<section>
         <h2>9. Code documentation</h2>
 
         <aside class="notes">
           Good unit tests can help document and define what something is supposed to do.
         </aside>
-      </section>
+      </section>-->
 
-      <section>
-        <h2>10. Unit tests help with code re-use.</h2>
+      <!--      <section>
+              <h2>10. Unit tests help with code re-use.</h2>
 
-        <aside class="notes">
-          Migrate both your code and your tests to your new project. Tweak the code till the tests run again.
-        </aside>
-      </section>
+              <aside class="notes">
+                Migrate both your code and your tests to your new project. Tweak the code till the tests run again.
+              </aside>
+            </section>-->
 
       <section>
         <h1>Unit testing is a lot like going to the gym.</h1>
@@ -293,10 +296,12 @@
 
       <section>
         <h2>The final answer</h2>
-        <h1>Unit Testing is usually worth the effort</h1>
-        <h3>BUT the amount of effort required isn't going to be the same for everybody</h3>
+        <h1 class="fragment">Unit Testing is usually worth the effort</h1>
+        <h3 class="fragment">BUT the amount of effort required isn't going to be the same for everybody</h3>
 
         <aside class="notes">
+          SPAGHETTI
+          CODE QUALITY
           Unit Testing may require an enormous amount of effort if you are dealing with spaghetti code base in a company
           that doesn't actually value code quality.
           (A lot of managers will sing Unit Testing's praises, but that doesn't mean they will stick up for it when it
@@ -355,6 +360,86 @@
             <h3>Make testing fun again!</h3>
           </li>
         </ul>
+      </section>
+
+      <section>
+        <h2>Spock in the testing jungle</h2>
+
+        <table class="reveal">
+          <thead>
+          <tr>
+            <th>Use Case</th>
+            <th>Conventional Tool(s)</th>
+            <th>A Single Tool</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Unit Testing</td>
+            <td>JUnit <br/>TestNG</td>
+            <td rowspan="3" style="text-align: center;vertical-align: middle;">Spock</td>
+          </tr>
+          <tr>
+            <td>Mocking and Stubing</td>
+            <td>
+              EasyMock <br/>
+              jMock <br/>
+              Mockito <br/>
+              PowerMock <br/>
+              jMockit <br/>
+            </td>
+          </tr>
+          <tr>
+            <td>Behaviour Driven Design (BDD)</td>
+            <td>
+              Cucamber <br/>
+              JBehave <br/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Comparison to JUnit Concepts</h2>
+        <table class="reveal">
+          <thead>
+          <tr>
+            <th>JUnit</th>
+            <th>Spock</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Test class</td>
+            <td>Specification</td>
+          </tr>
+          <tr>
+            <td>Test</td>
+            <td>Feature</td>
+          </tr>
+          <tr>
+            <td>Test method</td>
+            <td>Feature method</td>
+          </tr>
+          <tr>
+            <td><code>@Before</code></td>
+            <td><code>setup()</code></td>
+          </tr>
+          <tr>
+            <td><code>@After</code></td>
+            <td>cleanup()</td>
+          </tr>
+          <tr>
+            <td>Assertion</td>
+            <td>Condition</td>
+          </tr>
+          <tr>
+            <td><code>@Test(expected)</code></td>
+            <td>Exception condition</td>
+          </tr>
+          </tbody>
+        </table>
       </section>
 
       <section>
@@ -420,31 +505,36 @@ class StarshipSpec extends Specification {
       </section>
 
       <section>
-        <h2>Comparison to JUnit</h2>
+        <h2>Basic Blocks Demo</h2>
+        <a href="https://github.com/tdelev/javaskop17-spock">https://github.com/tdelev/javaskop17-spock</a>
       </section>
 
       <section>
-        <h2>Data Driven Testing</h2>
-        <h3>Demo</h3>
+        <h2>Data Driven Testing Demo</h2>
+        <a href="https://github.com/tdelev/javaskop17-spock">https://github.com/tdelev/javaskop17-spock</a>
       </section>
 
       <section>
-        <h2>Interaction Based Testing and Mocking</h2>
-        <h3>Demo</h3>
+        <h2>Interaction Based Testing and Mocking Demo</h2>
+        <a href="https://github.com/tdelev/javaskop17-spock">https://github.com/tdelev/javaskop17-spock</a>
       </section>
 
     </section>
 
     <section>
-      <h2>Real world example</h2>
-      <h1>Show me the code</h1>
+      <h2>Real world example Demo</h2>
+      <a href="https://github.com/tdelev/spring-spock">https://github.com/tdelev/spring-spock</a>
+    </section>
+
+    <section>
+      <h1>Thank you!</h1>
+      <h2>Questions?</h2>
+      <h3 style="margin-top:200px;">Acknowledgment</h3>
+      <p>This work was supported by</p>
+      <img style="border:0;background: none;" src="images/sorsix_1024.png"/>
     </section>
 
     <section data-background-image="bg/questions.jpg">
-
-    </section>
-
-    <section data-background-image="bg/thank-you.jpg">
 
     </section>
 

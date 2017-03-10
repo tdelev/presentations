@@ -7,3 +7,12 @@
     float: right;
     width: 50%;
 }
+
+.reveal pre code {
+    display: block;
+    padding: 10px;
+    font-size: 1.4em;
+    overflow: auto;
+    max-height: none;
+    word-wrap: normal;
+}
